@@ -13,8 +13,9 @@ public class CrptApi {
 	private TimeUnit timeUnit;
 	private int requestLimit;
 
-	public CrptApi(TimeUnit timeUnit, int requestLimit){
-
+	public CrptApi(TimeUnit timeUnit, int requestLimit) {
+		this.requestLimit = requestLimit;
+		this.timeUnit = timeUnit;
 	}
 
 	public synchronized void createDocument(Document document) throws URISyntaxException, IOException, InterruptedException {
@@ -66,5 +67,12 @@ public class CrptApi {
 		private String tnved_code;
 		private String uit_code;
 		private String uitu_code;
+	}
+
+	public enum TimeUnit {
+		MILISECOND,
+		SECOND,
+		MINUTE,
+		HOUR
 	}
 }
