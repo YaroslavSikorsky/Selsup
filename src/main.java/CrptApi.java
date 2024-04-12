@@ -25,7 +25,7 @@ public class CrptApi {
 		this.timeUnit = timeUnit;
 	}
 
-	public synchronized HttpResponse<String> createDocument(Document document,  String signature) throws URISyntaxException, IOException, InterruptedException {
+	public synchronized HttpResponse<String> createDocument(Document document, String signature) {
 		long currentTime = System.currentTimeMillis();
 
 		if (requestCount >= requestLimit && currentTime - lastRequestTime < 1000) {
@@ -54,6 +54,8 @@ public class CrptApi {
 			}
 		} catch (IOException e) {
 			System.out.println("IOException: " + e.getMessage());
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 		}
 		return response;
 
